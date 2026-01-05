@@ -1,15 +1,15 @@
-name: Upload to S3
+name: Upload dist folder to S3
 
 on:
   push:
     branches: [ main ]
 
 permissions:
-  id-token: write   # required for OIDC
+  id-token: write
   contents: read
 
 jobs:
-  upload:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
           role-to-assume: arn:aws:iam::831926612453:role/s3-github-oidc
           aws-region: us-east-1
 
-      - name: Upload files to S3
+      - name: Upload dist folder to S3
         run: |
-          aws s3 cp ./ my-bucket-oidc2411/ --recursive
-
+          echo "Uploading dist/ folder to S3..."
+          aws s3 cp dist/ s3://my-bucket-oidc2411/ --recursive
