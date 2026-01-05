@@ -25,4 +25,4 @@ jobs:
       - name: Upload dist folder to S3
         run: |
           echo "Uploading dist/ folder to S3..."
-          run: aws s3 cp ./ s3://my-bucket-oidc2411/ --recursive
+          aws run: aws s3 cp ./ s3://my-bucket-oidc2411/ --recursive
